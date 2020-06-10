@@ -33,8 +33,9 @@ public class XmlManager {
 
                     xmlr.nextTag();
 
-                    while (xmlr.getEventType() == XMLStreamConstants.START_ELEMENT) {
+                    while ((xmlr.getEventType()==XMLStreamConstants.START_ELEMENT)) {
                         city.addCityId(Integer.parseInt(xmlr.getAttributeValue(0)));
+                        xmlr.nextTag();
                         xmlr.nextTag();
                     }
 
