@@ -2,7 +2,7 @@ package city;
 
 import java.util.ArrayList;
 
-public class City {
+public class City implements Comparable<City>{
 	private int id;
 	private int x;
 	private int y;
@@ -73,6 +73,12 @@ public class City {
 
 	@Override
 	public String toString() {
-		return String.format("%s (%d, %d, %d)", name, x, y, h);
+		return String.format("%s (%d, %d, %d)%s", name, x, y, h,linkedCitiesIds);
+	}
+
+	@Override
+	public int compareTo(City o) {
+		return o.getId()-id;
+		
 	}
 }

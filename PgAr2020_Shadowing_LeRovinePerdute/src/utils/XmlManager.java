@@ -50,8 +50,5 @@ public class XmlManager {
 
         return cities;
     }
-    public static void main(String args[]) {
-    	
-    	
-    }
+    
 }

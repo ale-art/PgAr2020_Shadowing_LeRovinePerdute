@@ -94,10 +94,10 @@ public class Country {
 		return this.cities;
 	}
 
-	public City[] toArray() {
-
-		return (City[]) cities.toArray();
-	}
+//	public City[] toArray() {
+//
+//		return (City[]) cities.toArray();
+//	}
 
 	public int size() {
 
@@ -111,7 +111,7 @@ public class Country {
 
 	public boolean isEmpty() {
 
-		return cities.size() == 0;
+		return cities.isEmpty();
 	}
 
 	public boolean contains(Object o) {
