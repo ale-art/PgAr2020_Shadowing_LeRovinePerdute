@@ -23,6 +23,7 @@ public class MyMath{
 		return Math.sqrt((Math.pow(x2-x1, POWER_2)+Math.pow(y2-y1, POWER_2)));
 	
 	}
+	
 	public static double cathetus(double hypot,double cathetus2) {
 		double value=Math.sqrt(Math.pow(hypot, POWER_2))-Math.pow(cathetus2, POWER_2);
 		return value;

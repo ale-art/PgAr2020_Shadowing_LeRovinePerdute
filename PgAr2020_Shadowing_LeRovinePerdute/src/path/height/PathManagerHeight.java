@@ -1,9 +1,5 @@
 package path.height;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.Set;
 
 import city.City;
 import city.Country;
@@ -17,13 +13,8 @@ public class PathManagerHeight extends AbstractPathManager {
 
 	@Override
 	public double distance(City c1, City c2) {
-		
-		if (c1.getH()>c2.getH())
-			return c1.getH()-c2.getH();
-		
-		return c2.getH()-c1.getH();
+		return Math.abs(c1.getH()-c2.getH());
 	}
 
-	
 	
 }
