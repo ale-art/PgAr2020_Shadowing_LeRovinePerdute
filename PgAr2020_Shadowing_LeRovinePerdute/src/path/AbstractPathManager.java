@@ -32,18 +32,18 @@ public abstract class AbstractPathManager {
 
 			graph.addNode(node);
 		}
-System.out.println("Nodi copiati");
+		System.out.println("Nodi copiati");
 		Iterator<Node> nodeItr = graph.iterator();
 		// then add all the link
 		//i have to do so, bc until i don't have all nodes, i can't create the link
 		while (nodeItr.hasNext()) {
 
 			Node node = nodeItr.next();
-			City thisCity = cities.getCity(node.getId());
+			City thisCity = cities.getCity(node.getId());//lento
 
 			for (Integer id : thisCity.getLinkedCities()) {
 				City linkedCity = cities.getCity(id);
-				node.addDestination(graph.getSpecificNode(linkedCity.getId()), distance(thisCity, linkedCity));
+				node.addDestination(graph.getSpecificNode(linkedCity.getId())/*questa parte e' molta lenta*/, distance(thisCity, linkedCity));
 
 			}
 		}
