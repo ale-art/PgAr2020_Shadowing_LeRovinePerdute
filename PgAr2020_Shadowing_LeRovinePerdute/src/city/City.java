@@ -73,7 +73,7 @@ public class City implements Comparable<City>{
 
 	@Override
 	public String toString() {
-		return String.format("%s (%d, %d, %d)%s", name, x, y, h,linkedCitiesIds);
+		return String.format("%d %s (%d, %d, %d)%s", id,name, x, y, h,linkedCitiesIds);
 	}
 
 	@Override

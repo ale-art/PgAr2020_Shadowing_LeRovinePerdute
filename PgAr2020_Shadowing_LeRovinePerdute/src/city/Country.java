@@ -20,6 +20,7 @@ public class Country {
 	public Country(Collection<City> cities) {
 
 		this.cities = new TreeSet<City>(cities);
+		System.out.println("copia avvenuta");
 	}
 
 	public Country(City[] cities) {

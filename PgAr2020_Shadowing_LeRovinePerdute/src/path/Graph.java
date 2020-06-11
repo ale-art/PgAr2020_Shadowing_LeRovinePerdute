@@ -12,14 +12,12 @@ public class Graph {
 
 	private Set<Node> nodes = new HashSet<>();
 
-	private Node root;
+	
 
 	
 	public void addNode(Node nodeA) {
 
-		if (nodes.isEmpty())
-			root = nodeA;
-
+	
 		nodes.add(nodeA);
 	//	last=nodeA;
 	}
@@ -28,10 +26,7 @@ public class Graph {
 		return nodes;
 	}
 
-	public Node getRoot() {
-		return root;
-	}
-
+	
 	public Node getSpecificNode(int id) {
 		rangeCheck(id);
 
@@ -45,6 +40,10 @@ public class Graph {
 				return _this;
 		}
 		return null;
+	}
+	
+	public Iterator<Node> iterator(){
+		return nodes.iterator();
 	}
 	
 	private void rangeCheck(int id) {
