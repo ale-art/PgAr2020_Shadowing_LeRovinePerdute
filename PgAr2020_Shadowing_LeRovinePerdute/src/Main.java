@@ -9,8 +9,8 @@ import utils.XmlManager;
 public class Main {
 
     public static final int[] FILE_INDEXES = { 5, 12, 50, 200, 2000, 10000 };
-    public static final String BASE_INPUT_PATH = "./PgAr2020_Shadowing_LeRovinePerdute/input/PgAr_Map_%d.xml";
-    public static final String BASE_OUTPUT_PATH = "./PgAr2020_Shadowing_LeRovinePerdute/output/Routes_%d.xml";
+    public static final String BASE_INPUT_PATH = "./input/PgAr_Map_%d.xml";
+    public static final String BASE_OUTPUT_PATH = "./output/Routes_%d.xml";
 
     public static void main(String[] args) {
         System.out.printf("Starting the application\n\n");
