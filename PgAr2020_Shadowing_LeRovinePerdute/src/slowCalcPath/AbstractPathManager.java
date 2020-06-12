@@ -1,6 +1,7 @@
 package slowCalcPath;
 
 import java.io.FileNotFoundException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -12,11 +13,14 @@ import bestCalcPath.CostFunctionTypes;
 import bestCalcPath.DijkstraCalculator;
 import city.City;
 import utils.XmlManager;
+
 @Deprecated
-/**This class calculated the best path from the first City with id=0<br>
+/**
+ * This class calculated the best path from the first City with id=0<br>
  * to the City with the most high id<br>
  * But is too slow, don't use this. <br>
- * Use {@link DijkstraCalculator}*/
+ * Use {@link DijkstraCalculator}
+ */
 public abstract class AbstractPathManager {
 
 	/**
@@ -24,7 +28,7 @@ public abstract class AbstractPathManager {
 	 * provide the best path in the {@linkplain Graph} given <br>
 	 */
 	private Graph bestPath;
-	
+
 	/**
 	 * <b>Attribute</b> <br>
 	 * provide the initial {@link Country} <br>
@@ -39,7 +43,7 @@ public abstract class AbstractPathManager {
 
 		Graph graph = new Graph();
 		initialCountry = cities;
-		Iterator<City> citiesItr=cities.getCities().iterator();
+		Iterator<City> citiesItr = cities.getCities().iterator();
 		while (citiesItr.hasNext()) {
 
 			City thisCity = citiesItr.next();
@@ -80,7 +84,7 @@ public abstract class AbstractPathManager {
 
 	public Collection<City> getBestPath() {
 
-		Country countryBestPath = new Country();
+		ArrayList<City> countryBestPath = new ArrayList<>();
 
 		City lastCity = initialCountry.getCity(initialCountry.size() - 1);
 
@@ -94,8 +98,26 @@ public abstract class AbstractPathManager {
 			countryBestPath.add(initialCountry.getCity(node.getId()));
 		}
 
-		return countryBestPath.getCities();
+		return countryBestPath;
 	}
-	
-	
+
+	public static void main(String args[]) throws FileNotFoundException, XMLStreamException {
+		ArrayList<City> cities = XmlManager.readCities(String.format("./input/PgAr_Map_%d.xml", 10000));
+		long millS = System.nanoTime();
+		Collection<City> citta= new slowCalcPath.distance.PathManagerDistance(new Country(cities)).getBestPath();
+		for (City city : citta) {
+			System.out.print(city.getId()+"-> ");
+		}
+		System.out.println("\n"+LocalTime.ofNanoOfDay( System.nanoTime()-millS ));
+		millS = System.nanoTime();
+		DijkstraCalculator dj = new DijkstraCalculator(cities);
+		dj.calc(cities.get(0), cities.get(cities.size() - 1), CostFunctionTypes.DISTANCE);
+		
+		citta=dj.getPath();
+		for (City city : citta) {
+			System.out.print(city.getId()+"-> ");
+		}
+		System.out.println("\n"+LocalTime.ofNanoOfDay(System.nanoTime()-millS ));
+
+	}
 }
