@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import city.City;
 import it.unibs.fp.mylib.MyMath;
-import utils.XmlManager;
 
 public class DijkstraCalculator {
     private ArrayList<City> cities;
@@ -116,30 +115,5 @@ public class DijkstraCalculator {
 
     public void setCities(ArrayList<City> cities) {
         this.cities = cities;
-    }
-
-    public static void main(String[] args) {
-        /*
-         * ArrayList<City> aaa = XmlManager.readCities(
-         * "./PgAr2020_Shadowing_LeRovinePerdute/input/PgAr_Map_50.xml"); long startTime
-         * = System.nanoTime(); ArrayList<City> path = calcDijkstra(aaa, aaa.get(0),
-         * aaa.get(aaa.size() - 1), CostFunctionTypes.HEIGHT); long stopTime =
-         * System.nanoTime(); System.out.println(stopTime - startTime);
-         * 
-         * for (City city : path) { System.out.printf("-> %d ", city.getId()); }
-         */
-
-        ArrayList<City> cities = XmlManager.readCities("./PgAr2020_Shadowing_LeRovinePerdute/input/PgAr_Map_10000.xml");
-        DijkstraCalculator calculator = new DijkstraCalculator(cities);
-
-        long startTime = System.nanoTime();
-        calculator.calc(cities.get(0), cities.get(cities.size() - 1), CostFunctionTypes.HEIGHT);
-        long stopTime = System.nanoTime();
-
-        System.out.printf("Calculated in %f s\n", (stopTime - startTime) / Math.pow(10, 9));
-
-        for (City city : calculator.getPath()) {
-            System.out.printf("-> %d ", city.getId());
-        }
     }
 }
