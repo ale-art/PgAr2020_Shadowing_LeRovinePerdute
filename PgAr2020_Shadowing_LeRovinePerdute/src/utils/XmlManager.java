@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
@@ -12,9 +13,12 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
-import bestCalcPath.CostFunctionTypes;
-import bestCalcPath.DijkstraCalculator;
 import city.City;
+import usingArrayCalcPath.CostFunctionTypes;
+import usingArrayCalcPath.DijkstraCalculator;
+import usingGraphCalcPath.AbstractPathManager;
+import usingGraphCalcPath.distance.PathManagerDistance;
+import usingGraphCalcPath.height.PathManagerHeight;
 
 /**
  * Static class which manage the reading / writing of XML files of the program
@@ -23,7 +27,8 @@ public class XmlManager {
 	/**
 	 * Read the cities contained in the specified file
 	 * 
-	 * @param filePath the path of the file into which the information are contained
+	 * @param filePath
+	 *            the path of the file into which the information are contained
 	 * @return the {@code ArrayList<City>} which contains the information read from
 	 *         the specified file
 	 * @throws XMLStreamException
@@ -80,8 +85,10 @@ public class XmlManager {
 	 * Write a city element with the specified {@code XMLStreamWriter} in the xml
 	 * file
 	 * 
-	 * @param xmlw the writer
-	 * @param city the city to write
+	 * @param xmlw
+	 *            the writer
+	 * @param city
+	 *            the city to write
 	 * @throws XMLStreamException
 	 */
 	private static void writePathCity(XMLStreamWriter xmlw, City city) throws XMLStreamException {
@@ -101,11 +108,14 @@ public class XmlManager {
 	 * Calculate and write the best path that each team have to follow for reach the
 	 * last city with less cost
 	 * 
-	 * @param cities     the cities that the teams can reach
-	 * @param outputPath the path of the output file into which the final
-	 *                   information are writed
+	 * @param cities
+	 *            the cities that the teams can reach
+	 * @param outputPath
+	 *            the path of the output file into which the final information are
+	 *            writed
 	 * @throws XMLStreamException
 	 * @throws FileNotFoundException
+	 * @see #writePathsUsingAbrastracPathManager(ArrayList, String)
 	 */
 	public static void writePaths(ArrayList<City> cities, String outputPath)
 			throws XMLStreamException, FileNotFoundException {
@@ -140,6 +150,77 @@ public class XmlManager {
 				ArrayList<City> path = calculator.getPath();
 				double cost = calculator.getTotalCost();
 				String teamName = type == CostFunctionTypes.DISTANCE ? "Tonatiuh" : "Metztli";
+
+				// Write the route information
+				xmlw.writeStartElement("route");
+				xmlw.writeAttribute("team", teamName);
+				xmlw.writeAttribute("cost", String.format("%.2f", cost));
+				xmlw.writeAttribute("cities", String.format("%d", path.size()));
+
+				// Write each step of the path
+				for (City city : path) {
+					writePathCity(xmlw, city);
+				}
+
+				xmlw.writeEndElement();
+			}
+
+			xmlw.writeEndElement();
+			xmlw.close();
+
+		} catch (XMLStreamException e) {
+			throw e;
+		}
+	}
+
+	/**
+	 * Calculate and write the best path that each team have to follow for reach the
+	 * last city with less cost<br>
+	 * <br>
+	 * 
+	 * This Method is different from {@link #writePaths(ArrayList, String)} because
+	 * these one use {@linkplain AbrastracPathManager} & his son (ex
+	 * {@linkplain PathManagerDistance} & {@linkplain PathManagerHeight})
+	 * 
+	 * 
+	 * @param cities
+	 *            the cities that the teams can reach
+	 * @param outputPath
+	 *            the path of the output file into which the final information are
+	 *            writed
+	 * @throws XMLStreamException
+	 * @throws FileNotFoundException
+	 */
+	public static void writePathsUsingAbrastracPathManager(ArrayList<City> cities, String outputPath)
+			throws XMLStreamException, FileNotFoundException {
+
+		XMLOutputFactory xmlof = XMLOutputFactory.newInstance();
+		XMLStreamWriter xmlw = null;
+		try {
+			xmlw = xmlof.createXMLStreamWriter(new FileOutputStream(outputPath), "utf-8");
+		} catch (FileNotFoundException | XMLStreamException e) {
+			throw e;
+		}
+
+		try {
+			xmlw.writeStartDocument("utf-8", "1.0");
+			xmlw.writeStartElement("routes");
+
+			/**
+			 * Evaluate the best path for each team (in this case 2) beacause each team have
+			 * a different cost function
+			 */
+			City lastCity = cities.get(cities.size() - 1);
+
+			for (int i = 0; i < 2; i++) {
+				// Select the cost function
+				AbstractPathManager pathManager = i % 2 == 0 ? new PathManagerDistance(cities)
+						: new PathManagerHeight(cities);
+				// Execute the Dijkstra algorithm
+				Collection<City> path = pathManager.getBestPath(lastCity);
+				// Get the calculated information
+				double cost = pathManager.costPath(lastCity);
+				String teamName = pathManager.getClass() == PathManagerDistance.class ? "Tonatiuh" : "Metztli";
 
 				// Write the route information
 				xmlw.writeStartElement("route");

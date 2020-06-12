@@ -1,4 +1,4 @@
-package bestCalcPath;
+package usingArrayCalcPath;
 
 public enum CostFunctionTypes {
     HEIGHT, DISTANCE

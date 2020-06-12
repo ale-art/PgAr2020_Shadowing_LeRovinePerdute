@@ -1,4 +1,4 @@
-package slowCalcPath;
+package usingGraphCalcPath;
 
 import java.util.Collection;
 import java.util.HashMap;

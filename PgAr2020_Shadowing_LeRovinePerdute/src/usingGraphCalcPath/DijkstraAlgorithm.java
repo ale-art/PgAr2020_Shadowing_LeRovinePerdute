@@ -1,4 +1,4 @@
-package slowCalcPath;
+package usingGraphCalcPath;
 
 import java.util.HashSet;
 import java.util.LinkedList;

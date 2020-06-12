@@ -31,7 +31,7 @@ public class City implements Comparable<City> {
 	private String name;
 	/**
 	 * <b>Attribute</b> <br>
-	 * linked {@code City} 
+	 * linked {@code City}
 	 */
 	private ArrayList<Integer> linkedCitiesIds;
 
