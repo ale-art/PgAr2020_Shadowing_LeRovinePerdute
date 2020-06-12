@@ -54,4 +54,7 @@ public class XmlManager {
 		return cities;
 	}
 
+	public static void writePaths(ArrayList<City> pathTeam1, ArrayList<City> pathTeam2) {
+
+	}
 }
