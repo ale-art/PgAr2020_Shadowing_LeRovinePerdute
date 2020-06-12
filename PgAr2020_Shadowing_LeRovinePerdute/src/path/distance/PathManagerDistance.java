@@ -7,9 +7,9 @@ import city.Country;
 import it.unibs.fp.mylib.MyMath;
 import path.AbstractPathManager;
 
-public class PathManagerAle extends AbstractPathManager {
+public class PathManagerDistance extends AbstractPathManager {
 
-	public PathManagerAle(Country cities) {
+	public PathManagerDistance(Country cities) {
 		super(cities);
 	}
 	 
