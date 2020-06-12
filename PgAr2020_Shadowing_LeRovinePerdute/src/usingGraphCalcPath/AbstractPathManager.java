@@ -1,21 +1,14 @@
 package usingGraphCalcPath;
 
-import java.io.FileNotFoundException;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.xml.stream.XMLStreamException;
 
 import city.City;
 import city.Country;
-import usingArrayCalcPath.CostFunctionTypes;
-import usingArrayCalcPath.DijkstraCalculator;
-import usingGraphCalcPath.distance.PathManagerDistance;
-import usingGraphCalcPath.height.PathManagerHeight;
-import utils.XmlManager;
+
 
 /**
  * This class calculated the best path go across A {@linkplain Country}<br>

@@ -3,7 +3,6 @@ package city;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
@@ -24,7 +23,7 @@ public class Country {
 	 * Constructor
 	 * 
 	 * @param cities
-	 *            the {@linkplain City}s to add to the country
+	 *            the {@linkplain City} to add to the country
 	 */
 	public Country(Collection<City> cities) {
 
@@ -37,7 +36,7 @@ public class Country {
 	 * Constructor
 	 * 
 	 * @param cities
-	 *            the {@linkplain City}s to add to the country
+	 *            the {@linkplain City} to add to the country
 	 */
 	public Country(City[] cities) {
 
@@ -47,9 +46,8 @@ public class Country {
 	/** @return the City with that {@code id} */
 	public City getCity(int id) {
 
-		if (!contains(id)) {
-			throw new IndexOutOfBoundsException();
-		}
+	if (!contains(id))	throw new IndexOutOfBoundsException();
+	//	rangeCheck(id);
 
 		return cities.get(id);
 	}
@@ -59,7 +57,7 @@ public class Country {
 	 * 
 	 * @param city
 	 * @return true if there was a {@linkplain City} with that id (the old city is
-	 *         rewritten) else false
+	 *         discard) else false
 	 */
 	public boolean add(City city) {
 
@@ -73,8 +71,8 @@ public class Country {
 	 */
 	public City setCity(City newCity) {
 
-		contains(newCity.getId());
-
+		if(! contains(newCity.getId()))	 throw new IndexOutOfBoundsException();
+		//rangeCheck(newCity.getId());
 		return cities.replace(newCity.getId(), newCity);
 	}
 
@@ -108,6 +106,14 @@ public class Country {
 	public Collection<City> getCities() {
 
 		return this.cities.values();
+	}
+
+	private void rangeCheck(int id) {
+		if (id > cities.size() - 1 || id < 0)
+			throw new IndexOutOfBoundsException("The id doesn't exist");
+
+		if (cities.isEmpty())
+			throw new NullPointerException("The Collection Country is empty");
 	}
 
 	// public City[] toArray() {
