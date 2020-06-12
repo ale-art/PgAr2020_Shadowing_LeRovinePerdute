@@ -1,12 +1,8 @@
 package path;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import city.City;
 import city.Country;
@@ -35,19 +31,20 @@ public abstract class AbstractPathManager {
 		System.out.println("Nodi copiati");
 		Iterator<Node> nodeItr = graph.iterator();
 		// then add all the link
-		//i have to do so, bc until i don't have all nodes, i can't create the link
+		// i have to do so, bc until i don't have all nodes, i can't create the link
 		while (nodeItr.hasNext()) {
 
 			Node node = nodeItr.next();
-			City thisCity = cities.getCity(node.getId());//lento
+			City thisCity = cities.getCity(node.getId());// lento
 
 			for (Integer id : thisCity.getLinkedCities()) {
 				City linkedCity = cities.getCity(id);
-				node.addDestination(graph.getSpecificNode(linkedCity.getId())/*questa parte e' molta lenta*/, distance(thisCity, linkedCity));
+				node.addDestination(graph.getSpecificNode(linkedCity.getId())/* questa parte e' molta lenta */,
+						distance(thisCity, linkedCity));
 
 			}
 		}
-		System.out.println("Link copiati");//at last create the best path for all the Nodes
+		System.out.println("Link copiati");// at last create the best path for all the Nodes
 		bestPath = DijkstraAlgorithm.calculateShortestPathFromSource(graph, graph.getSpecificNode(0));
 		System.out.println("Miglior percorso creato");
 	}

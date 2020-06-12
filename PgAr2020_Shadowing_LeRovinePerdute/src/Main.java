@@ -1,4 +1,7 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import javax.xml.stream.XMLStreamException;
 
 import city.City;
 import utils.XmlManager;
@@ -16,9 +19,15 @@ public class Main {
             System.out.printf("Evaluating %s\n", String.format(BASE_INPUT_PATH, FILE_INDEXES[i]));
 
             long startTime = System.nanoTime();
+            ArrayList<City> cities;
 
-            ArrayList<City> cities = XmlManager.readCities(String.format(BASE_INPUT_PATH, FILE_INDEXES[i]));
-            XmlManager.writePaths(cities, String.format(BASE_OUTPUT_PATH, FILE_INDEXES[i]));
+            try {
+                cities = XmlManager.readCities(String.format(BASE_INPUT_PATH, FILE_INDEXES[i]));
+                XmlManager.writePaths(cities, String.format(BASE_OUTPUT_PATH, FILE_INDEXES[i]));
+
+            } catch (FileNotFoundException | XMLStreamException e) {
+                e.printStackTrace();
+            }
 
             long stopTime = System.nanoTime();
 

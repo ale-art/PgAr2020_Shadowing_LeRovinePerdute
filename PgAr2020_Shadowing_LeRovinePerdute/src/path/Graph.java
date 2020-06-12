@@ -3,30 +3,22 @@ package path;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-
-import city.City;
 
 public class Graph {
 
 	private Set<Node> nodes = new HashSet<>();
 
-	
-
-	
 	public void addNode(Node nodeA) {
 
-	
 		nodes.add(nodeA);
-	//	last=nodeA;
+		// last=nodeA;
 	}
 
 	public Collection<Node> getGraph() {
 		return nodes;
 	}
 
-	
 	public Node getSpecificNode(int id) {
 		rangeCheck(id);
 
@@ -41,13 +33,13 @@ public class Graph {
 		}
 		return null;
 	}
-	
-	public Iterator<Node> iterator(){
+
+	public Iterator<Node> iterator() {
 		return nodes.iterator();
 	}
-	
+
 	private void rangeCheck(int id) {
-		
+
 		if (id > nodes.size() - 1 || id < 0)
 			throw new IndexOutOfBoundsException("The id doesn't exist");
 
