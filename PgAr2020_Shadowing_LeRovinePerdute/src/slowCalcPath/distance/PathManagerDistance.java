@@ -1,9 +1,9 @@
-package path.distance;
+package slowCalcPath.distance;
 
 import city.City;
-import city.Country;
 import it.unibs.fp.mylib.MyMath;
-import path.AbstractPathManager;
+import slowCalcPath.AbstractPathManager;
+import slowCalcPath.Country;
 
 public class PathManagerDistance extends AbstractPathManager {
 /**

@@ -12,9 +12,9 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import bestCalcPath.CostFunctionTypes;
+import bestCalcPath.DijkstraCalculator;
 import city.City;
-import path.CostFunctionTypes;
-import path.DijkstraCalculator;
 
 /**
  * Static class which manage the reading / writing of XML files of the program

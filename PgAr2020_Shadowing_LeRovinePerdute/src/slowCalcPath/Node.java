@@ -1,4 +1,4 @@
-package path;
+package slowCalcPath;
 
 import java.util.HashMap;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package path;
+package bestCalcPath;
 
 import java.util.ArrayList;
 import java.util.Collections;

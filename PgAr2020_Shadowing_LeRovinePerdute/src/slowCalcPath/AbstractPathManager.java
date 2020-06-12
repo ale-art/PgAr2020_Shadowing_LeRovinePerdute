@@ -1,12 +1,22 @@
-package path;
+package slowCalcPath;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import city.City;
-import city.Country;
+import javax.xml.stream.XMLStreamException;
 
+import bestCalcPath.CostFunctionTypes;
+import bestCalcPath.DijkstraCalculator;
+import city.City;
+import utils.XmlManager;
+@Deprecated
+/**This class calculated the best path from the first City with id=0<br>
+ * to the City with the most high id<br>
+ * But is too slow, don't use this. <br>
+ * Use {@link DijkstraCalculator}*/
 public abstract class AbstractPathManager {
 
 	/**
@@ -29,8 +39,7 @@ public abstract class AbstractPathManager {
 
 		Graph graph = new Graph();
 		initialCountry = cities;
-		Iterator<City> citiesItr = cities.iterator();
-		// first add all Nodes to the Graph
+		Iterator<City> citiesItr=cities.getCities().iterator();
 		while (citiesItr.hasNext()) {
 
 			City thisCity = citiesItr.next();
@@ -39,7 +48,7 @@ public abstract class AbstractPathManager {
 			graph.addNode(node);
 		}
 		System.out.println("Nodi copiati");
-		Iterator<Node> nodeItr = graph.iterator();
+		Iterator<Node> nodeItr = graph.getGraph().iterator();
 		// then added all the link
 		// i have to do so, 'cause I can't create the link until i don't have all nodes
 		while (nodeItr.hasNext()) {
@@ -87,4 +96,6 @@ public abstract class AbstractPathManager {
 
 		return countryBestPath.getCities();
 	}
+	
+	
 }

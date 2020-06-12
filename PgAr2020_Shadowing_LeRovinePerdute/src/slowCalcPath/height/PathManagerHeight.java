@@ -1,8 +1,8 @@
-package path.height;
+package slowCalcPath.height;
 
 import city.City;
-import city.Country;
-import path.AbstractPathManager;
+import slowCalcPath.AbstractPathManager;
+import slowCalcPath.Country;
 
 public class PathManagerHeight extends AbstractPathManager {
 	/**

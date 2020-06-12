@@ -1,41 +1,30 @@
-package path;
+package slowCalcPath;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 public class Graph {
 
-	private Set<Node> nodes = new HashSet<>();
+	private Map<Integer, Node> nodes = new HashMap<>();
 
 	public void addNode(Node nodeA) {
 
-		nodes.add(nodeA);
+		nodes.put(nodeA.getId(), nodeA);
 		// last=nodeA;
 	}
 
 	public Collection<Node> getGraph() {
-		return nodes;
+		return nodes.values();
 	}
 
 	public Node getSpecificNode(int id) {
 		rangeCheck(id);
 
-		Iterator<Node> itr = nodes.iterator();
-
-		while (itr.hasNext()) {
-
-			Node _this = itr.next();
-
-			if (_this.getId() == id)
-				return _this;
-		}
-		return null;
-	}
-
-	public Iterator<Node> iterator() {
-		return nodes.iterator();
+		return nodes.get(id);
 	}
 
 	private void rangeCheck(int id) {
