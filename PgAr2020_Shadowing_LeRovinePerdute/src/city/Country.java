@@ -68,8 +68,10 @@ public class Country {
 
 		City old = getCity(index);
 
-		if (old == null)// It shouldn't never happen
+		//it shouldn't happened
+		if (old == null) {
 			throw new NullPointerException();
+		}
 
 		cities.remove(old);
 
@@ -106,7 +108,7 @@ public class Country {
 	}
 
 	public Iterator<City> iterator() {
-		
+
 		return cities.iterator();
 	}
 
@@ -121,7 +123,7 @@ public class Country {
 	}
 
 	public void clear() {
-		
+
 		cities = new HashSet<City>();
 	}
 }

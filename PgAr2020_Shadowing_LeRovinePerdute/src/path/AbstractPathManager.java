@@ -9,8 +9,18 @@ import city.Country;
 
 public abstract class AbstractPathManager {
 
+	/**
+	 * <b>Attribute</b> <br>
+	 * provide the best path in the {@linkplain Graph} given <br>
+	 */
 	private Graph bestPath;
-
+	
+	/**
+	 * <b>Attribute</b> <br>
+	 * provide the initial {@link Country} <br>
+	 * 
+	 * 
+	 */
 	private Country initialCountry;
 
 	public abstract double distance(City c1, City c2);
@@ -20,7 +30,7 @@ public abstract class AbstractPathManager {
 		Graph graph = new Graph();
 		initialCountry = cities;
 		Iterator<City> citiesItr = cities.iterator();
-		// firts add all Nodes to the Graph
+		// first add all Nodes to the Graph
 		while (citiesItr.hasNext()) {
 
 			City thisCity = citiesItr.next();
@@ -30,8 +40,8 @@ public abstract class AbstractPathManager {
 		}
 		System.out.println("Nodi copiati");
 		Iterator<Node> nodeItr = graph.iterator();
-		// then add all the link
-		// i have to do so, bc until i don't have all nodes, i can't create the link
+		// then added all the link
+		// i have to do so, 'cause I can't create the link until i don't have all nodes
 		while (nodeItr.hasNext()) {
 
 			Node node = nodeItr.next();

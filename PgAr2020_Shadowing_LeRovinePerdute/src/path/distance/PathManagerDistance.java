@@ -7,16 +7,17 @@ import path.AbstractPathManager;
 
 public class PathManagerDistance extends AbstractPathManager {
 /**
- * <b>constructor </b>
+ * <b>Constructor </B> <br>
  * @param cities
  */
 	public PathManagerDistance(Country cities) {
 		super(cities);
 	}
 /**
- * <b>Method</b> <br>
+ * <b>Method</B> <br>
  * calculation the distance between two cities<br>
  * using a {@code City} coordinates <br>
+ * the MyMath class provide this method in order to simplify the code structure <br>
  * 
  */
 	@Override
