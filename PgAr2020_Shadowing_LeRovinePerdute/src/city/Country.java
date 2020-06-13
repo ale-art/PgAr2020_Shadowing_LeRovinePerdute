@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-/** This class rapresent all the Country full of {@linkplain City} */
+/** This class represent all the Country full of {@linkplain City} */
 public class Country {
 
 	private Map<Integer, City> cities = new HashMap<Integer, City>();
 
 	/**
-	 * @deprecated not recommended, bc then u have to add all {@linkplain City}
+	 * @deprecated not recommended, cause then u have to add all {@linkplain City}
 	 *             using {@link #add(City)} method
 	 */
 	public Country() {
@@ -20,7 +20,7 @@ public class Country {
 	}
 
 	/**
-	 * Constructor
+	 * <b>Constructor </b> <br>
 	 * 
 	 * @param cities
 	 *            the {@linkplain City} to add to the country

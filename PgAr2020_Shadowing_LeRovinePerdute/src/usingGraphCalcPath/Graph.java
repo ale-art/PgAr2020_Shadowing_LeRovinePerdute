@@ -4,7 +4,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * <b>Class</b> <br>
+ * Represents the {@code Country} <br>
+ *
+ */
 public class Graph {
 
 	private Map<Integer, Node> nodes = new HashMap<>();

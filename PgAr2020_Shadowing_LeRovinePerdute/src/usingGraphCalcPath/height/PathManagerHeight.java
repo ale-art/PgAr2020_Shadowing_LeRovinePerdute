@@ -70,7 +70,7 @@ public class PathManagerHeight extends AbstractPathManager {
 
 	/**
 	 * <b>Method</B> <br>
-	 * returning the difference between two {@link City} height <br>
+	 * returning the difference between two {@link City} height
 	 */
 	@Override
 	public double distance(City c1, City c2) {

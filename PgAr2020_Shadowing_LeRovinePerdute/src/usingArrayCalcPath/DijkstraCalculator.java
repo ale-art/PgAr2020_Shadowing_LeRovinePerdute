@@ -7,7 +7,7 @@ import city.City;
 import it.unibs.fp.mylib.MyMath;
 
 /**
- * Class to calculate the Dijkstra algorithm
+ * <b>Class</B> to calculate the Dijkstra algorithm
  */
 public class DijkstraCalculator {
 	private ArrayList<City> cities;
@@ -15,7 +15,7 @@ public class DijkstraCalculator {
 	private double totalCost;
 
 	/**
-	 * Contructor of the calculator
+	 * <b>Constructor</B> of the calculator
 	 * 
 	 * @param cities
 	 *            the graph on which execute the algorithm
@@ -27,7 +27,7 @@ public class DijkstraCalculator {
 	}
 
 	/**
-	 * Constructor of the calculator
+	 * <b>Constructor</B> of the calculator
 	 */
 	public DijkstraCalculator() {
 		this.cities = new ArrayList<>();
@@ -36,14 +36,15 @@ public class DijkstraCalculator {
 	}
 
 	/**
-	 * Given the city which are not "calculated" yet, find the one that has the
+	 * <b>Method</B> <br>
+	 * Given the cities which are not "calculated" yet, find the one that has the
 	 * least distance from the origin
 	 * 
 	 * @param distances
 	 *            the distances of all the cities from the origin
 	 * @param remainderCities
 	 *            the city which are not "calculated" yet
-	 * @return
+	 * @return the {@code City} with the minimum distance
 	 */
 	private int getMinId(double[] distances, ArrayList<City> remainderCities) {
 		// Set as minimum the first city of the cities not calculated
@@ -64,7 +65,8 @@ public class DijkstraCalculator {
 	}
 
 	/**
-	 * Find a city from the "graph" with the specified id
+	 * <b>Method</B> <br>
+	 * Find a city from the"graph" with the specified id
 	 * 
 	 * @param id
 	 *            the id of the city to find
@@ -75,20 +77,20 @@ public class DijkstraCalculator {
 	}
 
 	/**
-	 * The cost function for the first team (euclidian distance between two points)
+	 * The cost function for the first team (Euclidean distance between two points)
 	 * 
 	 * @param c1
 	 *            the first city
 	 * @param c2
 	 *            the second city
-	 * @return the euclidian distance between the specified cities
+	 * @return the Euclidean distance between the specified cities
 	 */
 	private double getDistance(City c1, City c2) {
 		return MyMath.distance(c1.getX(), c2.getX(), c1.getY(), c2.getY());
 	}
 
 	/**
-	 * The cost function for the first tema (lenght of an unidimensional segment)
+	 * The cost function for the second team (length of an unidimensional segment)
 	 * 
 	 * @param c1
 	 *            the first city
@@ -134,7 +136,7 @@ public class DijkstraCalculator {
 
 		// For each city calculate its best distance from the source
 		while (!newList.isEmpty()) {
-			// Always start selecting the city whit bets distance (low cost)
+			// Always start selecting the city whit best distance (lowest cost)
 			City c = getCityById(getMinId(distances, newList));
 			newList.remove(c);
 

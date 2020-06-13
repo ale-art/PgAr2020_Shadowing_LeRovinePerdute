@@ -21,8 +21,8 @@ public class DijkstraAlgorithm {
 	 * 
 	 * @param graph
 	 * @param source
-	 * @return a {@code Graph} providing the shortest path between thje starting
-	 *         ands the
+	 * @return a {@code Graph} providing the shortest path between the starting
+	 *         {@code Node} and the arrival {@code Node}
 	 */
 	public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
 
